@@ -40,18 +40,16 @@ const LoginScreen = () => {
                     </Text>
                     <TouchableOpacity style={styles.loginButton}
                         onPress={handleGoogleSignIn}>
-                        <Fontisto
-                            name="google"
-                            color="#ffffff"
-                            size={20}
-                        />
-                        <Text
-                            style={{
-                                color:"#ffffff",
-                                marginLeft:10,
-                            }}
-                        >
-                            Sign in with Google
+                        <Fontisto name="google" color="#ffffff" size={20}/>
+                        <Text style={styles.loginButtonText}>
+                            Sign in with Google as User
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.loginButton}
+                        onPress={handleGoogleSignIn}>
+                        <Fontisto name="home" color="#ffffff" size={20}/>
+                        <Text style={styles.loginButtonText}>
+                            Sign in as Club
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -87,5 +85,9 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         marginTop:20,
+    },
+    loginButtonText:{
+        color:"#ffffff",
+        marginLeft:10,
     }
 })
