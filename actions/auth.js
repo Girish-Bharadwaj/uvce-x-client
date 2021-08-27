@@ -16,9 +16,11 @@ export const auth = (idToken, type) => async(dispatch)=> {
             await AsyncStorage.setItem('userToken', userToken);
             await AsyncStorage.setItem('rightsToken', rightsToken);
             await SecureStore.setItemAsync('potato', potato);
+            
         }else{
             console.log('login failed')
         }
+        dispatch({type : 'LOGIN'});
         dispatch({type : 'END_LOADING', payload : null});
 
     } catch (error) {

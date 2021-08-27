@@ -1,5 +1,7 @@
 const authReducer = (state = { idToken: null,isLoading:false, trigger : 1 }, action) => {
     switch (action.type) {  
+      case 'LOGIN':
+        return{...state, trigger : 2};
       case 'LOGOUT':
         return { ...state, idToken: null};
         

@@ -4,20 +4,21 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import { tokenReader } from './utils/utils.js';
+import { useSelector } from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
 
   const [token, setToken] = useState();
-
+  const {trigger} = useSelector((state) => state.auth);
   useEffect(() => {
     async function readToken() {
       const token = await tokenReader();
       setToken(token);
     }
     readToken();
-  }, [tokenReader])
+  }, [tokenReader, trigger])
   
     return (
         <NavigationContainer>
