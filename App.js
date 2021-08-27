@@ -1,32 +1,38 @@
-import React from 'react'
+import React , {useState, useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from './screens/LoginScreen';
-import HomeScreen from './screens/HomeScreen'
-
-let accessToken=null //dummy
+import HomeScreen from './screens/HomeScreen';
+import { tokenReader } from './utils/utils.js';
 
 const Stack = createNativeStackNavigator();
+
 const App = () => {
+
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    async function readToken() {
+      const token = await tokenReader();
+      setToken(token);
+    }
+    readToken();
+  }, [tokenReader])
+  
     return (
         <NavigationContainer>
-          <Stack.Navigator>
-            {accessToken == null ? (
-            <Stack.Screen
-                name="SignIn"
-                component={LoginScreen}
-                options={{
-                  title: 'Sign in',
-                }}
-              />
-            ) : (
-              <Stack.Screen name="Home" component={HomeScreen} />
-            )}
+          <Stack.Navigator> 
+            {token?.profile?.sub ?
+            <Stack.Screen name="Home" component={HomeScreen} />
+          :
+          <Stack.Screen name="SignIn" component={LoginScreen}/> }
+          
+          
           </Stack.Navigator>
         </NavigationContainer>
     )
 }
 
-export default App
+export default App;
 
 
