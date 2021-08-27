@@ -7,6 +7,7 @@ import { tokenReader } from './utils/utils.js';
 import { useSelector } from 'react-redux';
 import CreatePostForm from './screens/CreatePostForm';
 
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
     }
     readToken();
   }, [tokenReader, trigger])
-  
+  console.log(trigger)
     return (
         <NavigationContainer>
           <Stack.Navigator> 
@@ -30,7 +31,10 @@ const App = () => {
               <Stack.Screen name="CreatePost" component={CreatePostForm} options={{headerShown:false}}/>
             </>
           :
-          <Stack.Screen name="SignIn" component={LoginScreen} options={{headerShown:false}}/> }
+          <>
+            <Stack.Screen name="SignIn" component={LoginScreen} options={{headerShown:false}}/>
+          </>
+          }
           
           
           </Stack.Navigator>

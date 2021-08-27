@@ -5,11 +5,13 @@ import {Fontisto} from '@expo/vector-icons';
 import * as Google from 'expo-google-app-auth';
 import { useDispatch } from 'react-redux';
 import { auth } from '../actions/auth.js';
+import LoadingScreen from '../components/LoadingScreen';
+import { useSelector } from 'react-redux';
 
 const LoginScreen = () => {
 
     const dispatch = useDispatch();
-
+    const {isLoading} = useSelector((state) => state.auth);
     function handleGoogleSignIn(userType){
         const config={
             iosClientId:`367910513234-vlneadjfdhi92o58g3nv52jjitdnuc23.apps.googleusercontent.com`,
@@ -37,12 +39,12 @@ const LoginScreen = () => {
         const userType = 'club';
         handleGoogleSignIn(userType);
     }
-
+    console.log(isLoading)
 
     return (
         <StyledContainer>
             <StatusBar style="dark"></StatusBar>
-            <ImageBackground 
+                <ImageBackground 
                 source={require("./../assets/loginBackground.png")}
                 resizeMode="cover"
                 style={styles.ImageBackground}>
