@@ -25,7 +25,7 @@ const HomeScreen = ({navigation}) => {
                 <StatusBar style="dark"></StatusBar>
                     <AppBarComponent/>
                     <View style={styles.container}>
-                        <FAB size="large" placement="right" icon={()=><Icon name="edit-2" size={23}/>} style={styles.fab} onPress={()=>console.log('pressed')}/>
+                        <FAB size="large" placement="right" icon={()=><Icon name="edit-2" size={23}/>} style={styles.fab} onPress={()=>{navigation.navigate('CreatePost')}}/>
                         <View style={styles.tabBar}>
                             <ScrollView horizontal={true} style={{height:1}}>
                                 <View style={styles.tabLayout}>

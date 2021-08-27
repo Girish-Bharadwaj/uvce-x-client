@@ -5,6 +5,7 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import { tokenReader } from './utils/utils.js';
 import { useSelector } from 'react-redux';
+import CreatePostForm from './screens/CreatePostForm';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,9 +25,12 @@ const App = () => {
         <NavigationContainer>
           <Stack.Navigator> 
             {token?.profile?.sub ?
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <>
+              <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
+              <Stack.Screen name="CreatePost" component={CreatePostForm} options={{headerShown:false}}/>
+            </>
           :
-          <Stack.Screen name="SignIn" component={LoginScreen}/> }
+          <Stack.Screen name="SignIn" component={LoginScreen} options={{headerShown:false}}/> }
           
           
           </Stack.Navigator>
