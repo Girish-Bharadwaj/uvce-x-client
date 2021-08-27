@@ -1,10 +1,19 @@
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const API = axios.create({ baseURL: 'https://localhost:3000.com/' });
+const API = axios.create({ baseURL: 'https://uvcex.herokuapp.com/' });
 
-API.interceptors.request.use((req) => {
-    req.headers.Authorization = `Bearer${accessToken}`;  //add access token once reducers is fixed by abhishek
-    return req;
+API.interceptors.request.use( async (req) => {
+    try {
+        const idToken = await AsyncStorage.getItem('idToken');
+        if(idToken){
+            req.headers.Authorization = `Bearer ${idToken}`;
+            return req; 
+        }else return req; 
+
+    } catch (error) {
+        console.log(error);
+    }
 });
 
-export const auth = () => API.post('/auth')
+export const auth = (idToken, type, platform) => API.post(`/auth?type=${type}&platform=${platform}`, {idToken :idToken});

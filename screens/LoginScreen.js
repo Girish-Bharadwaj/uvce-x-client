@@ -1,23 +1,24 @@
-import React from 'react'
-import {ImageBackground, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { StyledContainer } from '../components/styles'
-import {Fontisto} from '@expo/vector-icons'
-import * as Google from 'expo-google-app-auth'
+import React from 'react';
+import {ImageBackground, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyledContainer } from '../components/styles';
+import {Fontisto} from '@expo/vector-icons';
+import * as Google from 'expo-google-app-auth';
 import { useDispatch } from 'react-redux';
+import { auth } from '../actions/auth.js';
 
 const LoginScreen = () => {
-    const dispatch=useDispatch();
-    function handleGoogleSignIn(){
+
+    const dispatch = useDispatch();
+
+    function handleGoogleSignIn(userType){
         const config={
             iosClientId:`367910513234-vlneadjfdhi92o58g3nv52jjitdnuc23.apps.googleusercontent.com`,
             androidClientId:`367910513234-lnjillhctfie4eu8658cqi06vlkuq84k.apps.googleusercontent.com`,
         }
         Google.logInAsync(config).
         then((result)=>{
-            const{type,user}=result;
-            if(type==='success'){
-                console.log(result)
-                dispatch({type:'AUTH',data:result.accessToken})
+            if(result?.type==='success'){
+                dispatch(auth(result?.idToken, userType));
             }
             else{
                 console.log('Unsuccessfull')
@@ -25,7 +26,19 @@ const LoginScreen = () => {
         }).catch((error)=>{
             console.log(error);
         })
+    };
+
+    const handleUserSignIn = ()=>{
+        const userType = 'user';
+        handleGoogleSignIn(userType);
     }
+
+    const handleClubSignIn = ()=>{
+        const userType = 'club';
+        handleGoogleSignIn(userType);
+    }
+
+
     return (
         <StyledContainer>
             <StatusBar style="dark"></StatusBar>
@@ -35,21 +48,20 @@ const LoginScreen = () => {
                 style={styles.ImageBackground}>
                 <View style={styles.view}>
                     <Text style={styles.heading}>
-                        UVCE
-                        <Text style={styles.x}>x</Text>
+                        UVCE<Text style={styles.x}>x</Text>
                     </Text>
                     <TouchableOpacity style={styles.loginButton}
-                        onPress={handleGoogleSignIn}>
+                        onPress={handleUserSignIn}>
                         <Fontisto name="google" color="#ffffff" size={20}/>
                         <Text style={styles.loginButtonText}>
                             Sign in with Google as User
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.loginButton}
-                        onPress={handleGoogleSignIn}>
+                        onPress={handleClubSignIn}>
                         <Fontisto name="home" color="#ffffff" size={20}/>
                         <Text style={styles.loginButtonText}>
-                            Sign in as Club
+                            Sign in with Google as Club
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -58,7 +70,7 @@ const LoginScreen = () => {
     )
 }
 
-export default LoginScreen
+export default LoginScreen;
 
 const styles = StyleSheet.create({
     view:{

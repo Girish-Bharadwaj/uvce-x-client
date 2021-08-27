@@ -1,11 +1,7 @@
-const authReducer = (state = { accessToken: null ,isLoading:false }, action) => {
-    switch (action.type) {
-      case 'AUTH':
-        console.log('called auth dispatch function')
-        return { ...state, accessToken: action?.data};
-  
+const authReducer = (state = { idToken: null,isLoading:false, trigger : 1 }, action) => {
+    switch (action.type) {  
       case 'LOGOUT':
-        return { ...state, accessToken: null};
+        return { ...state, idToken: null};
         
       case 'START_LOADING':
         return { ...state, isLoading:true};
@@ -17,4 +13,4 @@ const authReducer = (state = { accessToken: null ,isLoading:false }, action) => 
     }
   };
   
-  export default authReducer ;
+export default authReducer ;
