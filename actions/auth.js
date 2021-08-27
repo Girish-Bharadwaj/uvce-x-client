@@ -6,7 +6,7 @@ import * as SecureStore from 'expo-secure-store';
 export const auth = (idToken, type) => async(dispatch)=> {
     console.log('action auth got called');
     try {
-        dispatch({type : 'START_LOADING', payload : null});
+        dispatch({type : 'START_LOADING'});
         const platform = Platform.OS;
         const {data : {userToken, rightsToken, potato, status, message}} = await api.auth(idToken, type, platform);
         console.log(data);
@@ -22,7 +22,7 @@ export const auth = (idToken, type) => async(dispatch)=> {
             console.log('login failed')
         }
         dispatch({type : 'LOGIN'});
-        dispatch({type : 'END_LOADING', payload : null});
+        dispatch({type : 'END_LOADING'});
 
     } catch (error) {
         console.log(error);

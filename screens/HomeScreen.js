@@ -13,7 +13,7 @@ import AppBarComponent from '../components/AppBarComponent'
 const HomeScreen = ({navigation}) => {
     const [text, setText] = useState('trending');
     function check(){
-        if(text=='all'){
+        if(text==='all'){
             return true
         }
         else{
