@@ -27,17 +27,18 @@ const ImagePickerComponent=()=>{
       }
     };
   return (
-        <Button
-          buttonStyle={styles.button}
-          icon={()=><Icon color="#ffffff" size={18} name="paperclip"/>}
-          onPress={pickImage}
-        />
-        // <TouchableOpacity>
-        //   <View style={styles.button}>
-            
-        //     <Text>Pick Image</Text>
-        //   </View>
-        // </TouchableOpacity>
+        // <Button
+        //   style={{backgroundColor:'#000000'}}
+        //   buttonStyle={styles.button}
+        //   icon={()=><Icon color="#ffffff" size={18} name="paperclip"/>}
+        //   onPress={pickImage}
+        // />
+        <TouchableOpacity
+        onPress={pickImage}>
+          <View style={styles.button}>
+            <Icon color="#ffffff" size={20} name="paperclip"/>
+          </View>
+        </TouchableOpacity>
     
   );
 }
@@ -51,6 +52,8 @@ const styles=StyleSheet.create({
     borderRadius:50,
     width:50,
     height:50,
+    alignItems:'center',
+    justifyContent:'center'
   }
 
 })

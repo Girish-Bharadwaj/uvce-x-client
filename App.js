@@ -10,9 +10,7 @@ import { ThemeProvider, Button } from 'react-native-elements';
 import EventFullScreen from './screens/EventFullScreen';
 
 const theme = {
-  Button: {
-    raised: true,
-  },
+  
   Text:{
     style:{
       color:"#ffffff"
