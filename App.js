@@ -34,7 +34,7 @@ const App = () => {
     }
     readToken();
   }, [tokenReader, trigger])
-  console.log(trigger)
+  
     return (
       <ThemeProvider theme={theme}>
         <NavigationContainer>
