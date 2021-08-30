@@ -1,66 +1,36 @@
 import React,{useState} from 'react'
-import { ScrollView } from 'react-native'
 import { StatusBar } from 'react-native'
 import { StyleSheet,View} from 'react-native'
-import {Appbar } from 'react-native-paper'
-import { FAB, Text,Button } from 'react-native-elements'
-import cn from 'react-native-classnames'
-import Trending from './Trending'
-import Icon from 'react-native-vector-icons/Feather'
-import CreatePostForm from './CreatePostForm'
 import AppBarComponent from '../components/AppBarComponent'
+import ExploreScreen from './ExploreScreen'
+import HomePage from './HomePage'
+import Icon from 'react-native-vector-icons/Feather'
+import cn from 'react-native-classnames'
+import ClubsScreen from './ClubsScreen'
+import ProfileScreen from './ProfileScreen'
 
 const HomeScreen = ({navigation}) => {
-    const [text, setText] = useState('trending');
-    function check(){
-        if(text==='all'){
-            return true
-        }
-        else{
-            return false
-        }
-    }
+    const [tab, setTab] = useState("home");
+    console.log(tab)
     return (
-            <View style={styles.screen}>
-                <StatusBar style="dark"></StatusBar>
-                    <AppBarComponent/>
-                    <View style={styles.container}>
-                        <FAB size="large" placement="right" icon={()=><Icon name="edit-2" size={23}/>} style={styles.fab} onPress={()=>{navigation.navigate('CreatePost')}}/>
-                        <View style={styles.tabBar}>
-                            <ScrollView horizontal={true} style={{height:1}}>
-                                <View style={styles.tabLayout}>
-                                    <Text 
-                                        style={cn(styles, 'tab', {selectedtab:text==='trending'})} 
-                                        onPress={()=>{setText('trending')}}>
-                                        Trending
-                                    </Text>
-                                    <Text 
-                                        style={cn(styles, 'tab', {selectedtab:text==='events'})} 
-                                        onPress={()=>{setText('events')}}>
-                                            Events
-                                    </Text>
-                                    <Text 
-                                        style={cn(styles, 'tab', {selectedtab:text==='workshops'})} 
-                                        onPress={()=>{setText('workshops')}}>
-                                            Workshops
-                                    </Text>
-                                    <Text 
-                                        style={cn(styles, 'tab', {selectedtab:text==='clubs'})} 
-                                        onPress={()=>{setText('clubs')}}>
-                                            Clubs
-                                    </Text>
-                                    <Text 
-                                        style={cn(styles, 'tab', {selectedtab:text==='others'})} 
-                                        onPress={()=>{setText('others')}}>
-                                        Others
-                                    </Text>
-                                </View>
-                            </ScrollView>
-                        </View>
-                        {text==="trending"?(<Trending/>):(<Text>404</Text>)}
-                        
-                    </View>
-            </View> 
+        <View style={styles.screen}>
+            <StatusBar style="dark"></StatusBar>
+            <AppBarComponent/>
+            <View style={{marginBottom:59,flex:1}}>
+                {tab==="home"?<HomePage/>:<></>}
+                {tab==="explore"?<ExploreScreen navigation={navigation}/>:<></>}
+                {tab==="clubs"?<ClubsScreen/>:<></>}
+                {tab==="profile"?<ProfileScreen/>:<></>}
+            </View>
+            <View style={styles.bottomNavigation}>
+                <Icon name="home"  style={cn(styles, 'icons', {iconSelected:tab==='home'})} size={30}  onPress={()=>{setTab("home")}}/>
+                <Icon name="search"  style={cn(styles, 'icons', {iconSelected:tab==='explore'})} size={30}  onPress={()=>{setTab("explore")}}/>
+                <Icon name="calendar"  style={cn(styles, 'icons', {iconSelected:tab==='calendar'})} size={30}  onPress={()=>{setTab("calendar")}}/>
+                <Icon name="bell"  style={cn(styles, 'icons', {iconSelected:tab==='notifications'})} size={30}  onPress={()=>{setTab("notifications")}}/>
+                <Icon name="user"  style={cn(styles, 'icons', {iconSelected:tab==='profile'})} size={30}  onPress={()=>{setTab("profile")}}/>
+                
+            </View>
+        </View>
     )
 }
 
@@ -69,66 +39,26 @@ export default HomeScreen
 const styles = StyleSheet.create({
     screen:{
         flex:1,
-        backgroundColor:'#000000'
-    },
-    container:{
-        
-        flex:1,
         backgroundColor:'#000000',
     },
-    tabBar:{
-        height:40,
-        marginTop:15
-    },
-    tabLayout:{
-        backgroundColor:'#6C403B',
-        borderRadius:11,
+    bottomNavigation:{
+        height:70,
+        width:'100%',
         flexDirection:'row',
-        marginLeft:10,
-        justifyContent:'center',
-        alignItems:'center',
+        backgroundColor:'#2C1A18',
+        borderRadius:27,
+        position:'absolute',
+        bottom:0,
+        left:0,
         
+        justifyContent:'space-evenly',
+        alignItems:'center'
     },
-    tab:{
-        paddingTop:5,
-        paddingBottom:5,
-        paddingLeft:15,
-        paddingRight:15,
-        height:'100%',
-        textAlign:'center',
-        textAlignVertical:'center',
-        fontSize:16,
-        color:'#ffffff'
+    icons:{
+        color:"#ffffff"
     },
-    selectedtab:{
-        color:'#ffffff',
-        paddingTop:5,
-        paddingBottom:5,
-        paddingLeft:15,
-        paddingRight:15,
-        backgroundColor:'#CE5252',
-        borderRadius:11,
-        height:'100%',
-        textAlign:'center',
-        textAlignVertical:'center',
-        fontSize:16,
+    iconSelected:{
+        color:"#CE5252",
+        fontSize:35
     },
-    posts:{
-        flex:1,
-        backgroundColor:'red',
-        marginTop:10,
-        alignItems:'center',
-        justifyContent:'center'
-    },
-    errorText:{
-        flex:1,
-        fontSize:60,
-        fontWeight:'bold',
-        textAlign:'center',
-        textAlignVertical:'center'
-    },
-    fab: {
-        zIndex:1,
-        borderRadius:140,
-      },
 })

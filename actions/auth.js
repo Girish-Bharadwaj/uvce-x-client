@@ -9,7 +9,6 @@ export const auth = (idToken, type) => async(dispatch)=> {
         dispatch({type : 'START_LOADING'});
         const platform = Platform.OS;
         const {data : {userToken, rightsToken, potato, status, message}} = await api.auth(idToken, type, platform);
-        console.log(data);
         console.log(`this is api response : 
         message : ${message} `); //remove this later
         if(status === '200'){

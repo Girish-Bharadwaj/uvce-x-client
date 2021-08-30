@@ -39,12 +39,11 @@ const LoginScreen = () => {
         const userType = 'club';
         handleGoogleSignIn(userType);
     }
-    console.log(isLoading)
 
     return (
         <StyledContainer>
             <StatusBar style="dark"></StatusBar>
-                <ImageBackground 
+                {!isLoading?<ImageBackground 
                 source={require("./../assets/loginBackground.png")}
                 resizeMode="cover"
                 style={styles.ImageBackground}>
@@ -67,7 +66,7 @@ const LoginScreen = () => {
                         </Text>
                     </TouchableOpacity>
                 </View>
-            </ImageBackground>
+            </ImageBackground>:<LoadingScreen/>}
         </StyledContainer>
     )
 }

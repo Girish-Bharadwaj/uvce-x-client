@@ -1,10 +1,11 @@
 import React from 'react'
 import { ScrollView } from 'react-native'
 import { StyleSheet, View } from 'react-native'
-import BigMoment from '../components/BigMoment'
-import Hashtags from '../components/Hashtags'
+import BigMoment from './BigMoment'
+import Hashtags from './Hashtags'
 import { Dimensions } from 'react-native';
-import SmallMoment from '../components/SmallMoment'
+import SmallMoment from './SmallMoment'
+import EventComponent from './EventComponent'
 
 const screenWidth = Dimensions.get('window').width;
 

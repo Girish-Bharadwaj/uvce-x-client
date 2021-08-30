@@ -6,6 +6,19 @@ import HomeScreen from './screens/HomeScreen';
 import { tokenReader } from './utils/utils.js';
 import { useSelector } from 'react-redux';
 import CreatePostForm from './screens/CreatePostForm';
+import { ThemeProvider, Button } from 'react-native-elements';
+import EventFullScreen from './screens/EventFullScreen';
+
+const theme = {
+  Button: {
+    raised: true,
+  },
+  Text:{
+    style:{
+      color:"#ffffff"
+    }
+  }
+};
 
 
 const Stack = createNativeStackNavigator();
@@ -23,12 +36,14 @@ const App = () => {
   }, [tokenReader, trigger])
   console.log(trigger)
     return (
+      <ThemeProvider theme={theme}>
         <NavigationContainer>
           <Stack.Navigator> 
             {token?.profile?.sub ?
             <>
               <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
               <Stack.Screen name="CreatePost" component={CreatePostForm} options={{headerShown:false}}/>
+              <Stack.Screen name="EventFullScreen" component={EventFullScreen} options={{headerShown:false}}/>
             </>
           :
           <>
@@ -39,6 +54,7 @@ const App = () => {
           
           </Stack.Navigator>
         </NavigationContainer>
+      </ThemeProvider>
     )
 }
 
