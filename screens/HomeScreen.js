@@ -17,10 +17,10 @@ const HomeScreen = ({navigation}) => {
             <StatusBar style="dark"></StatusBar>
             <AppBarComponent/>
             <View style={{marginBottom:59,flex:1}}>
-                {tab==="home"?<HomePage/>:<></>}
-                {tab==="explore"?<ExploreScreen navigation={navigation}/>:<></>}
-                {tab==="clubs"?<ClubsScreen/>:<></>}
-                {tab==="profile"?<ProfileScreen/>:<></>}
+                {tab==="home" && <HomePage/>}
+                {tab==="explore" && <ExploreScreen navigation={navigation}/>}
+                {tab==="clubs" && <ClubsScreen/>}
+                {tab==="profile" && <ProfileScreen/>}
             </View>
             <View style={styles.bottomNavigation}>
                 <Icon name="home"  style={cn(styles, 'icons', {iconSelected:tab==='home'})} size={30}  onPress={()=>{setTab("home")}}/>
@@ -28,7 +28,6 @@ const HomeScreen = ({navigation}) => {
                 <Icon name="calendar"  style={cn(styles, 'icons', {iconSelected:tab==='calendar'})} size={30}  onPress={()=>{setTab("calendar")}}/>
                 <Icon name="bell"  style={cn(styles, 'icons', {iconSelected:tab==='notifications'})} size={30}  onPress={()=>{setTab("notifications")}}/>
                 <Icon name="user"  style={cn(styles, 'icons', {iconSelected:tab==='profile'})} size={30}  onPress={()=>{setTab("profile")}}/>
-                
             </View>
         </View>
     )
