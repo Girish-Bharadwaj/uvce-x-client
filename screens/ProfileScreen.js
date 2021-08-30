@@ -7,6 +7,8 @@ import cn from 'react-native-classnames'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { Button } from 'react-native-elements/dist/buttons/Button'
 import * as Google from 'expo-google-app-auth';
+import { useDispatch } from 'react-redux'
+import { logout } from '../actions/auth'
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -28,6 +30,7 @@ const handleGoogleSignIn=()=>{
             console.log(error);
         })
 }
+
 
 const signInAsClub=()=>{
     Alert.alert(
@@ -52,6 +55,10 @@ const signInAsClub=()=>{
 
 
 const ProfileScreen = () => {
+    const dispatch=useDispatch();
+    const logoutFunction=()=>{
+        dispatch(logout)
+    }
     let gold,bronze,silver;   //dummy variables to give appropiate color for badges in glory section
     gold=true;
     bronze=false;
@@ -110,6 +117,7 @@ const ProfileScreen = () => {
                 </View>
             </LinearGradient>
             <Button buttonStyle={styles.clubSignIn} title="Sign in as club" onPress={signInAsClub}/> 
+            <Button buttonStyle={styles.clubSignIn} title="Logout" onPress={logoutFunction}/> 
         </View>
     )
 }
@@ -255,6 +263,7 @@ const styles = StyleSheet.create({
         width:150,
         // marginTop:20,
         marginLeft:5,
-        borderRadius:10
+        borderRadius:10,
+        marginTop:10
     }
 })

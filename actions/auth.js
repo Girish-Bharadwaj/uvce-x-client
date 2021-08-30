@@ -27,3 +27,18 @@ export const auth = (idToken, type) => async(dispatch)=> {
         console.log(error);
     }
 }
+
+export const logout=async (dispatch)=>{
+    console.log('logout action called');
+    try{
+        dispatch({type:'START_LOADING'})
+        await SecureStore.deleteItemAsync('potato')
+        await AsyncStorage.removeItem('userToken',(error)=>{console.log(error)})
+        await AsyncStorage.removeItem('rightsToken')
+        dispatch({type:'LOGOUT'})
+        dispatch({type:'END_LOADING'})
+    }
+    catch(error){
+        console.log(error)
+    }
+}
