@@ -14,6 +14,5 @@ export const colors={
 
 export const StyledContainer = styled.View`
     flex:1;
-    padding-top : ${statusBarHeight}px;
     background-color:#000000;
 `

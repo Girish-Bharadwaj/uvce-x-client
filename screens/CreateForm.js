@@ -5,6 +5,7 @@ import CreateEventForm from '../components/CreateEventForm'
 import { Picker } from '@react-native-picker/picker'
 import AppBarComponent from '../components/AppBarComponent'
 import { StyledContainer } from '../components/styles'
+import CreateMomentForm from '../components/CreateMomentForm'
 
 const CreateForm = () => {
     const [postType,setPostType]=useState('post')
@@ -24,11 +25,13 @@ const CreateForm = () => {
             <Picker.Item label="Post" value="post" />
             <Picker.Item label="Event" value="event" />
             <Picker.Item label="Workshop" value="workshop" />
+            <Picker.Item label="Moment" value="moment" />
         </Picker>
         </View>
         {(postType==="post")?<CreatePostFrom/>:<></>}
         {(postType==="event")?<CreateEventForm/>:<></>}
         {(postType==="workshop")?<CreateEventForm/>:<></>}
+        {(postType==="moment")?<CreateMomentForm/>:<></>}
         </StyledContainer>
     </>
     )

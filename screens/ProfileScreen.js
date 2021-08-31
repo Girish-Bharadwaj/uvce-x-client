@@ -1,5 +1,5 @@
+import React,{useEffect,useState} from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
-import React from 'react'
 import { ScrollView, StyleSheet, View , Dimensions, Alert } from 'react-native'
 import { Text,Avatar} from 'react-native-elements'
 import { color } from 'react-native-elements/dist/helpers'
@@ -17,6 +17,14 @@ const screenWidth = Dimensions.get('window').width;
 
 
 const ProfileScreen = ({navigation}) => {
+    const [user,setUser] =useState();
+    useEffect(() => {
+        async function readToken() {
+          const user = await tokenReader();
+          setUser(user);
+        }
+        readToken();
+      }, [tokenReader])
     const dispatch=useDispatch();
     const logoutFunction=()=>{
         dispatch(logout)

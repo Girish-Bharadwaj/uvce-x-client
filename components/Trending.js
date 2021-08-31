@@ -10,7 +10,7 @@ import EventComponent from './EventComponent'
 const screenWidth = Dimensions.get('window').width;
 
 
-const Trending = () => {
+const Trending = ({navigation}) => {
     return (
         <View style={styles.window}>
             <ScrollView style={{flex:1}}>
@@ -19,9 +19,9 @@ const Trending = () => {
                         horizontal={true}
                         snapToInterval={screenWidth-20}
                     >
-                        <BigMoment/>
-                        <BigMoment/>
-                        <BigMoment/>
+                        <BigMoment navigation={navigation}/>
+                        <BigMoment navigation={navigation}/>
+                        <BigMoment navigation={navigation}/>
                     </ScrollView>
                 </View>
                 <ScrollView

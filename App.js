@@ -9,6 +9,7 @@ import { ThemeProvider, Button } from 'react-native-elements';
 import EventFullScreen from './screens/EventFullScreen';
 import CreateForm from './screens/CreateForm';
 import CreateClubForm from './screens/CreateClubForm';
+import MomentFullScreen from './screens/MomentFullScreen';
 
 const theme = {
   
@@ -44,6 +45,7 @@ const App = () => {
               <Stack.Screen name="EventFullScreen" component={EventFullScreen} options={{headerShown:false}}/>
               <Stack.Screen name="CreateForm" component={CreateForm} options={{headerShown:false}}/>
               <Stack.Screen name="CreateClub" component={CreateClubForm} options={{headerShown:false}}/>
+              <Stack.Screen name="MomentFullScreen" component={MomentFullScreen} options={{headerShown:false}}/>
             </>
           :
           <>

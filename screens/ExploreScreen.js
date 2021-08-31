@@ -42,7 +42,7 @@ const ExploreScreen = ({navigation}) => {
                     </View>
                 </ScrollView>
             </View>
-            {text==="trending"?(<Trending/>):(<></>)}
+            {text==="trending"?(<Trending navigation={navigation}/>):(<></>)}
             {text==="events"?(<EventScreen navigation={navigation}/>):(<></>)}
             {text==="workshops"?(<WorkshopScreen navigation={navigation}/>):(<></>)}
             {text==="clubs"?(<ClubsScreen/>):(<></>)}

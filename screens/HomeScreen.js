@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { StatusBar } from 'react-native'
 import { StyleSheet,View} from 'react-native'
 import AppBarComponent from '../components/AppBarComponent'
@@ -15,10 +15,15 @@ import { FAB } from 'react-native-elements'
 const HomeScreen = ({navigation}) => {
 
     const [tab, setTab] = useState("home");
-
+    const [user,setUser] =useState();
     console.log(tab)
-    const user = tokenReader();
-
+    useEffect(() => {
+        async function readToken() {
+          const user = await tokenReader();
+          setUser(user);
+        }
+        readToken();
+      }, [tokenReader])
     return (
         <View style={styles.screen}>
             <StatusBar style="dark"></StatusBar>
@@ -39,7 +44,7 @@ const HomeScreen = ({navigation}) => {
 
             {user?.rights?.verifiedLevel >=3 &&
             <FAB size="large" color='#ce5252' placement="right" icon={()=><Icon name="edit-2" size={23}/>} style={styles.fab} onPress={()=>{navigation.navigate('CreateForm')}}/>
-            } 
+            }
 
         </View>
     )
