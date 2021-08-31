@@ -28,7 +28,7 @@ export const auth = (idToken, type) => async(dispatch)=> {
     }
 }
 
-export const logout=async (dispatch)=>{
+export const logout = async (dispatch)=>{
     console.log('logout action called');
     try{
         dispatch({type:'START_LOADING'})
