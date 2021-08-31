@@ -9,6 +9,8 @@ import cn from 'react-native-classnames'
 import ClubsScreen from './ClubsScreen'
 import ProfileScreen from './ProfileScreen'
 import { tokenReader } from '../utils/utils'
+import CreateForm from './CreateForm'
+import { FAB } from 'react-native-elements'
 
 const HomeScreen = ({navigation}) => {
 
@@ -25,7 +27,7 @@ const HomeScreen = ({navigation}) => {
                 {tab==="home" && <HomePage/>}
                 {tab==="explore" && <ExploreScreen navigation={navigation}/>}
                 {tab==="clubs" && <ClubsScreen/>}
-                {tab==="profile" && <ProfileScreen/>}
+                {tab==="profile" && <ProfileScreen navigation={navigation}/>}
             </View>
             <View style={styles.bottomNavigation}>
                 <Icon name="home"  style={cn(styles, 'icons', {iconSelected:tab==='home'})} size={30}  onPress={()=>{setTab("home")}}/>
@@ -36,8 +38,8 @@ const HomeScreen = ({navigation}) => {
             </View>
 
             {user?.rights?.verifiedLevel >=3 &&
-            <FAB size="large" placement="right" icon={()=><Icon name="edit-2" size={23}/>} style={styles.fab} onPress={()=>{navigation.navigate('CreatePost')}}/>
-            }
+            <FAB size="large" color='#ce5252' placement="right" icon={()=><Icon name="edit-2" size={23}/>} style={styles.fab} onPress={()=>{navigation.navigate('CreateForm')}}/>
+            } 
 
         </View>
     )
@@ -70,4 +72,7 @@ const styles = StyleSheet.create({
         color:"#CE5252",
         fontSize:35
     },
+    fab:{
+        marginBottom:80,
+    }
 })

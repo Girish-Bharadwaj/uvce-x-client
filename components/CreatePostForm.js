@@ -1,15 +1,13 @@
 import React from 'react'
 import { StyleSheet,View,TextInput } from 'react-native'
-import ImagePickerComponent from '../components/ImagePickerComponent'
+import ImagePickerComponent from './ImagePickerComponent'
 import { Button } from 'react-native-elements'
-import { StyledContainer } from '../components/styles'
-import { StatusBar } from 'expo-status-bar'
-import AppBarComponent from '../components/AppBarComponent'
+import { StyledContainer } from './styles'
+
 
 const CreatePostForm = () => {
     return (
         <>
-        <AppBarComponent/>
         <StyledContainer>
             <View style={styles.form}>
                 <TextInput underlineColorAndroid='transparent' placeholder="Description...." placeholderTextColor="#C4C4C4" multiline={true} style={styles.input}/>

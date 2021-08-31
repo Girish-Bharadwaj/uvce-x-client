@@ -9,52 +9,14 @@ import { Button } from 'react-native-elements/dist/buttons/Button'
 import * as Google from 'expo-google-app-auth';
 import { useDispatch } from 'react-redux'
 import { logout } from '../actions/auth'
+import { tokenReader } from '../utils/utils'
+
+const user=tokenReader();
 
 const screenWidth = Dimensions.get('window').width;
 
-const handleGoogleSignIn=()=>{
-    console.log("pressed")
-    const config={
-            iosClientId:`367910513234-vlneadjfdhi92o58g3nv52jjitdnuc23.apps.googleusercontent.com`,
-            androidClientId:`367910513234-lnjillhctfie4eu8658cqi06vlkuq84k.apps.googleusercontent.com`,
-        }
-        Google.logInAsync(config).
-        then((result)=>{
-            if(result?.type==='success'){
-                console.log("successfull="+result) //implement what you want to do after getting result
-            }
-            else{
-                console.log('Unsuccessfull')
-            }
-        }).catch((error)=>{
-            console.log(error);
-        })
-}
 
-
-const signInAsClub=()=>{
-    Alert.alert(
-        "Alert Title",
-        "My Alert Msg",
-        [
-          {
-            text: "Cancel",
-            style: "cancel",
-          },
-          {
-            text: "Ok",
-            onPress: handleGoogleSignIn,
-            style: "default",
-          },
-        ],
-        {
-          cancelable: true,
-        }
-    )
-}
-
-
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation}) => {
     const dispatch=useDispatch();
     const logoutFunction=()=>{
         dispatch(logout)
@@ -116,7 +78,9 @@ const ProfileScreen = () => {
                     </View>
                 </View>
             </LinearGradient>
-            <Button buttonStyle={styles.clubSignIn} title="Sign in as club" onPress={signInAsClub}/> 
+            {user?.rights?.verifiedLevel >=3 &&
+                <Button buttonStyle={styles.clubSignIn} title="CreateClub" onPress={()=>{navigation.navigate('CreateClub')}}/> 
+            } 
             <Button buttonStyle={styles.clubSignIn} title="Logout" onPress={logoutFunction}/> 
         </View>
     )

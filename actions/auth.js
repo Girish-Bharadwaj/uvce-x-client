@@ -33,8 +33,7 @@ export const logout = async (dispatch)=>{
     try{
         dispatch({type:'START_LOADING'})
         await SecureStore.deleteItemAsync('potato')
-        await AsyncStorage.removeItem('userToken',(error)=>{console.log(error)})
-        await AsyncStorage.removeItem('rightsToken')
+        await AsyncStorage.clear((error)=>{console.log('error')})
         dispatch({type:'LOGOUT'})
         dispatch({type:'END_LOADING'})
     }

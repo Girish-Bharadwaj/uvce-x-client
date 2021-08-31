@@ -5,9 +5,10 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import { tokenReader } from './utils/utils.js';
 import { useSelector } from 'react-redux';
-import CreatePostForm from './screens/CreatePostForm';
 import { ThemeProvider, Button } from 'react-native-elements';
 import EventFullScreen from './screens/EventFullScreen';
+import CreateForm from './screens/CreateForm';
+import CreateClubForm from './screens/CreateClubForm';
 
 const theme = {
   
@@ -40,8 +41,9 @@ const App = () => {
             {token?.profile?.sub ?
             <>
               <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
-              <Stack.Screen name="CreatePost" component={CreatePostForm} options={{headerShown:false}}/>
               <Stack.Screen name="EventFullScreen" component={EventFullScreen} options={{headerShown:false}}/>
+              <Stack.Screen name="CreateForm" component={CreateForm} options={{headerShown:false}}/>
+              <Stack.Screen name="CreateClub" component={CreateClubForm} options={{headerShown:false}}/>
             </>
           :
           <>
