@@ -5,10 +5,15 @@ import AppBarComponent from '../components/AppBarComponent'
 import {StyledContainer} from '../components/styles'
 import {Text} from 'react-native-elements'
 import {LinearGradient}  from 'expo-linear-gradient'
+import LoadingScreen from '../components/LoadingScreen'
+import { useSelector } from 'react-redux'
+
 const MomentFullScreen = () => {
+    const {isLoading}=useSelector((state)=>state.feeds)
     return (
         <>
         <AppBarComponent/>
+        {!isLoading?
             <StyledContainer>
             <ScrollView>
                 <ImageBackground style={styles.coverPhoto} source={{uri:"https://images.unsplash.com/photo-1629985858244-a033a55b66e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"}}>
@@ -41,6 +46,8 @@ const MomentFullScreen = () => {
                 </View>
             </ScrollView>
             </StyledContainer>
+            :<LoadingScreen/>
+        }
         </>
     )
 }

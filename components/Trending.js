@@ -6,13 +6,15 @@ import Hashtags from './Hashtags'
 import { Dimensions } from 'react-native';
 import SmallMoment from './SmallMoment'
 import EventComponent from './EventComponent'
-
+import { useSelector } from 'react-redux'
+import LoadingScreen from './LoadingScreen'
 const screenWidth = Dimensions.get('window').width;
 
-
 const Trending = ({navigation}) => {
+    const {isLoading}=useSelector((state)=>state.feeds)
     return (
-        <View style={styles.window}>
+        <>
+        {!isLoading?<View style={styles.window}>
             <ScrollView style={{flex:1}}>
                 <View style={{flex:1}}>
                     <ScrollView style={{flex:1}}
@@ -36,7 +38,9 @@ const Trending = ({navigation}) => {
                     <SmallMoment/>
                     <SmallMoment/>
             </ScrollView>
-        </View>
+        </View>:<LoadingScreen/>
+        }
+        </>
     )
 }
 

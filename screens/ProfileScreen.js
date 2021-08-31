@@ -10,6 +10,8 @@ import * as Google from 'expo-google-app-auth';
 import { useDispatch } from 'react-redux'
 import { logout } from '../actions/auth'
 import { tokenReader } from '../utils/utils'
+import LoadingScreen from '../components/LoadingScreen'
+import { useSelector } from 'react-redux'
 
 const user=tokenReader();
 
@@ -18,6 +20,7 @@ const screenWidth = Dimensions.get('window').width;
 
 const ProfileScreen = ({navigation}) => {
     const [user,setUser] =useState();
+    const {isLoading}=useSelector((state)=>state.feeds)
     useEffect(() => {
         async function readToken() {
           const user = await tokenReader();
@@ -34,6 +37,8 @@ const ProfileScreen = ({navigation}) => {
     bronze=false;
     silver=false;
     return (
+        <>
+        {!isLoading?
         <View style={{margin:10}}>
             <ScrollView
                 horizontal={true}
@@ -91,6 +96,9 @@ const ProfileScreen = ({navigation}) => {
             } 
             <Button buttonStyle={styles.clubSignIn} title="Logout" onPress={logoutFunction}/> 
         </View>
+        :<LoadingScreen/>
+        }
+        </>
     )
 }
 

@@ -3,11 +3,16 @@ import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-nat
 import { Text,Button } from 'react-native-elements'
 import { StyledContainer } from '../components/styles'
 import AppBarComponent from '../components/AppBarComponent'
+import LoadingScreen from '../components/LoadingScreen'
+import { useSelector } from 'react-redux'
 
 const EventFullScreen = () => {
+    const {isLoading}=useSelector((state)=>state.feeds)
     return (
         <>
         <AppBarComponent/>
+        {
+        !isLoading?
         <StyledContainer>
             <ScrollView style={{padding:10,backgroundColor:"#000000"}}>
             <Image source={{uri:'https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZ3JhbW1pbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60'}} style={{width:'100%',height:300}}></Image>
@@ -22,6 +27,8 @@ const EventFullScreen = () => {
             <TouchableOpacity style={styles.enroll}><Text style={{fontSize:20,fontWeight:'bold'}}>Enroll</Text></TouchableOpacity>
             </ScrollView>
         </StyledContainer>
+        :<LoadingScreen/>
+        }
         </>
     )
 }
