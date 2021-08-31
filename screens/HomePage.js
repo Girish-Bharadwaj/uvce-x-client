@@ -4,12 +4,14 @@ import PostComponent from '../components/PostComponent';
 import { useDispatch } from 'react-redux';
 import { getHomeFeed } from '../actions/feed.js'
 import { useSelector } from 'react-redux';
+import LoadingScreen from '../components/LoadingScreen';
+import { Text } from 'react-native-elements';
 
 const HomePage = () => {
 
     const dispatch = useDispatch();
     const [page, setPage] = useState(1);
-
+    const {isLoading}=useSelector((state)=>state.feeds);
     useEffect(() => {
         dispatch(getHomeFeed(page));
     }, [])
@@ -18,7 +20,11 @@ const HomePage = () => {
 
     return (
         <ScrollView>
-            {homePosts !== undefined && <>
+
+            {isLoading ? <LoadingScreen/>
+        :    
+        <>
+        {homePosts !== undefined && <>
             {homePosts?.length ?
             <>
              {homePosts?.map((post) => (
@@ -27,6 +33,9 @@ const HomePage = () => {
             </>
              : <></>}</>
             }
+        </>
+        }
+            
             
             
         </ScrollView>
