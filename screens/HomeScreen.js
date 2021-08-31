@@ -8,10 +8,15 @@ import Icon from 'react-native-vector-icons/Feather'
 import cn from 'react-native-classnames'
 import ClubsScreen from './ClubsScreen'
 import ProfileScreen from './ProfileScreen'
+import { tokenReader } from '../utils/utils'
 
 const HomeScreen = ({navigation}) => {
+
     const [tab, setTab] = useState("home");
+
     console.log(tab)
+    const user = tokenReader();
+
     return (
         <View style={styles.screen}>
             <StatusBar style="dark"></StatusBar>
@@ -29,6 +34,11 @@ const HomeScreen = ({navigation}) => {
                 <Icon name="bell"  style={cn(styles, 'icons', {iconSelected:tab==='notifications'})} size={30}  onPress={()=>{setTab("notifications")}}/>
                 <Icon name="user"  style={cn(styles, 'icons', {iconSelected:tab==='profile'})} size={30}  onPress={()=>{setTab("profile")}}/>
             </View>
+
+            {user?.rights?.verifiedLevel >=3 &&
+            <FAB size="large" placement="right" icon={()=><Icon name="edit-2" size={23}/>} style={styles.fab} onPress={()=>{navigation.navigate('CreatePost')}}/>
+            }
+
         </View>
     )
 }

@@ -17,3 +17,4 @@ API.interceptors.request.use( async (req) => {
 });
 
 export const auth = (idToken, type, platform) => API.post(`/auth?type=${type}&platform=${platform}`, {idToken :idToken});
+export const getHomeFeed = (page, platform) => API.get(`/feed/home?page=${page}&platform=${platform}`);

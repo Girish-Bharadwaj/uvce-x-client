@@ -1,41 +1,50 @@
-import React from 'react'
-import { Image, StyleSheet,View } from 'react-native'
-import { Text,Avatar } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/Feather'
-import { Button } from 'react-native-elements/dist/buttons/Button'
+import React from 'react';
+import { Image, StyleSheet,View } from 'react-native';
+import { Text,Avatar } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Feather';
+import { Button } from 'react-native-elements/dist/buttons/Button';
+import moment from 'moment';
 
-const PostComponent = () => {
+const PostComponent = ({post}) => {
+
     return (
         <View style={styles.container}>
-            <Avatar rounded size={62} containerStyle={styles.avatar} source={{uri:'https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png'}}/>
+            <Avatar rounded size={62} containerStyle={styles.avatar} 
+                source={{uri: post?.authorProfilePic}}/>
+
             <View style={styles.author}>
-                <Text style={styles.authorName}>IEEE UVCE Computer Society</Text>
+                <Text style={styles.authorName}>{post?.authorName}</Text>
                 <View style={{width:8,height:8,backgroundColor:'#C4C4C4',borderRadius:50}}></View>
-                <Text style={styles.time}>5min</Text>
+                <Text style={styles.time}>{moment(post.createdAt).fromNow()}</Text>
             </View>
+
             <View style={styles.post}>
+
                 <View style={styles.content}>
                     <Text style={{fontSize:16}}>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est quasi corrupti ut magni ullam doloremque voluptatum laudantium facere at deserunt alias quis ipsam repudiandae harum cumque, aliquid dolorum odit incidunt placeat...
+                        {post?.postText}
                     </Text>
                 </View>
-                <Image source={{uri:"https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZ3JhbW1pbmd8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"}} style={styles.image} imageStyle={styles.background}></Image>
+
+                <Image source={{uri: post?.postImage }} style={styles.image} imageStyle={styles.background}></Image>
+
                 <View style={styles.reaction}>
                     <Button buttonStyle={{borderRadius:50}} icon={<Icon name="share-2" size={21} style={styles.reactionIcons} />}/>
                     <Button buttonStyle={{borderRadius:50}} icon={<Icon name="message-square" size={21} style={styles.reactionIcons} />}/>
                     <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
                         <Button buttonStyle={{borderRadius:50}} icon={<Icon name="heart" size={21} style={styles.reactionIcons} />}/>
-                        <Text>35</Text>
+                        <Text>{post?.likeCount}</Text>
                     </View>
                     <Button buttonStyle={{borderRadius:50}} icon={<Icon name="more-vertical" size={21} style={styles.reactionIcons} />}/>
                 </View>
+
             </View>
             <View style={styles.divider}></View>
         </View>
     )
 }
 
-export default PostComponent
+export default PostComponent;
 
 const styles = StyleSheet.create({
     container:{

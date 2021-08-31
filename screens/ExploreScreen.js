@@ -7,44 +7,48 @@ import WorkshopScreen from '../components/WorkshopScreen'
 import Icon from 'react-native-vector-icons/Feather'
 import {Text} from 'react-native-elements'
 import ClubsScreen from './ClubsScreen'
+import { tokenReader } from '../utils/utils'
 
 const ExploreScreen = ({navigation}) => {
     const [text, setText] = useState('trending');
+
+
     return (
         
-                    <View style={styles.container}>
-                        {/* <FAB size="large" placement="right" icon={()=><Icon name="edit-2" size={23}/>} style={styles.fab} onPress={()=>{navigation.navigate('CreatePost')}}/> */}
-                        <View style={styles.tabBar}>
-                            <ScrollView horizontal={true} style={{height:1}}>
-                                <View style={styles.tabLayout}>
-                                    <Text 
-                                        style={cn(styles, 'tab', {selectedtab:text==='trending'})} 
-                                        onPress={()=>{setText('trending')}}>
-                                        Trending
-                                    </Text>
-                                    <Text 
-                                        style={cn(styles, 'tab', {selectedtab:text==='events'})} 
-                                        onPress={()=>{setText('events')}}>
-                                            Events
-                                    </Text>
-                                    <Text 
-                                        style={cn(styles, 'tab', {selectedtab:text==='workshops'})} 
-                                        onPress={()=>{setText('workshops')}}>
-                                            Workshops
-                                    </Text>
-                                    <Text 
-                                        style={cn(styles, 'tab', {selectedtab:text==='clubs'})} 
-                                        onPress={()=>{setText('clubs')}}>
-                                            Clubs
-                                    </Text>
-                                </View>
-                            </ScrollView>
-                        </View>
-                        {text==="trending"?(<Trending/>):(<></>)}
-                        {text==="events"?(<EventScreen navigation={navigation}/>):(<></>)}
-                        {text==="workshops"?(<WorkshopScreen navigation={navigation}/>):(<></>)}
-                        {text==="clubs"?(<ClubsScreen/>):(<></>)}
+        <View style={styles.container}>
+            <View style={styles.tabBar}>
+                <ScrollView horizontal={true} style={{height:1}}>
+                    <View style={styles.tabLayout}>
+                        <Text 
+                            style={cn(styles, 'tab', {selectedtab:text==='trending'})} 
+                            onPress={()=>{setText('trending')}}>
+                            Trending
+                        </Text>
+                        <Text 
+                            style={cn(styles, 'tab', {selectedtab:text==='events'})} 
+                            onPress={()=>{setText('events')}}>
+                                Events
+                        </Text>
+                        <Text 
+                            style={cn(styles, 'tab', {selectedtab:text==='workshops'})} 
+                            onPress={()=>{setText('workshops')}}>
+                                Workshops
+                        </Text>
+                        <Text 
+                            style={cn(styles, 'tab', {selectedtab:text==='clubs'})} 
+                            onPress={()=>{setText('clubs')}}>
+                                Clubs
+                        </Text>
                     </View>
+                </ScrollView>
+            </View>
+            {text==="trending"?(<Trending/>):(<></>)}
+            {text==="events"?(<EventScreen navigation={navigation}/>):(<></>)}
+            {text==="workshops"?(<WorkshopScreen navigation={navigation}/>):(<></>)}
+            {text==="clubs"?(<ClubsScreen/>):(<></>)}
+
+
+        </View>
             
     )
 }

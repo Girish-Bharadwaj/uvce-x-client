@@ -24,7 +24,7 @@ const CreatePostForm = () => {
 }
 
 
-export default CreatePostForm
+export default CreatePostForm;
 
 const styles=StyleSheet.create({
     form:{

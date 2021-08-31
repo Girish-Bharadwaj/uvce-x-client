@@ -1,14 +1,25 @@
-import React from 'react'
-import { ScrollView,StyleSheet } from 'react-native'
-import PostComponent from '../components/PostComponent'
+import React from 'react';
+import { ScrollView,StyleSheet } from 'react-native';
+import PostComponent from '../components/PostComponent';
+import { useDispatch } from 'react-redux';
+import { getHomeFeed } from '../actions/feed.js'
 
 const HomePage = () => {
+
+    const dispatch = useDispatch();
+    const [page, setPage] = useState(1);
+
+    useEffect(() => {
+        dispatch(getHomeFeed(page));
+    }, [])
+
+    const {homePosts} = useSelector(state => state.feed);
+
     return (
         <ScrollView>
-            <PostComponent/>
-            <PostComponent/>
-            <PostComponent/>
-            <PostComponent/>
+            {homePosts?.map((post) => (
+                    <PostComponent key = {post._id} post = {post}/>
+                ))}  
         </ScrollView>
     )
 }
