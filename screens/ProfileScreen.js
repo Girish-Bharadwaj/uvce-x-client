@@ -91,13 +91,9 @@ const ProfileScreen = ({navigation}) => {
                     </View>
                 </View>
             </LinearGradient>
-<<<<<<< Updated upstream
             {user?.rights?.verifiedLevel >=3 &&
                 <Button buttonStyle={styles.clubSignIn} title="CreateClub" onPress={()=>{navigation.navigate('CreateClub')}}/> 
             } 
-=======
-            <Button buttonStyle={styles.clubSignIn} title="Create club" onPress={signInAsClub}/> 
->>>>>>> Stashed changes
             <Button buttonStyle={styles.clubSignIn} title="Logout" onPress={logoutFunction}/> 
         </View>
         :<LoadingScreen/>
