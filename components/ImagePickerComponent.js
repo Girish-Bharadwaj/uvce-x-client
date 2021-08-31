@@ -4,7 +4,9 @@ import * as ImagePicker from 'expo-image-picker';
 import { Button,Text } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/Feather';
 
-const ImagePickerComponent=()=>{
+const ImagePickerComponent=({image, setImage})=>{
+
+
     useEffect(() => {
       (async () => {
         if (Platform.OS !== 'web') {
@@ -17,13 +19,13 @@ const ImagePickerComponent=()=>{
     }, []);
 
     const pickImage = async () => {
-      let result = await ImagePicker.launchImageLibraryAsync({
+      const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        quality: 1,
+        quality: 0.8,
         base64:true
       });
       if (!result.cancelled) {
-        console.log("result"+result.base64);
+        setImage(result.base64);
       }
     };
   return (

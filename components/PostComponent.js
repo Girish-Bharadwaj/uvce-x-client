@@ -7,13 +7,14 @@ import moment from 'moment';
 
 const PostComponent = ({post}) => {
 
+    console.log(post);
     return (
         <View style={styles.container}>
             <Avatar rounded size={62} containerStyle={styles.avatar} 
                 source={{uri: post?.authorProfilePic}}/>
 
             <View style={styles.author}>
-                <Text style={styles.authorName}>{post?.authorName}</Text>
+                <Text style={styles.authorName}>{post?.author}</Text>
                 <View style={{width:8,height:8,backgroundColor:'#C4C4C4',borderRadius:50}}></View>
                 <Text style={styles.time}>{moment(post.createdAt).fromNow()}</Text>
             </View>
@@ -25,8 +26,9 @@ const PostComponent = ({post}) => {
                         {post?.postText}
                     </Text>
                 </View>
-
-                <Image source={{uri: post?.postImage }} style={styles.image} imageStyle={styles.background}></Image>
+                {post.postImage !== '' && 
+                    <Image source={{uri: post?.postImage }} style={styles.image} imageStyle={styles.background}></Image>
+                }
 
                 <View style={styles.reaction}>
                     <Button buttonStyle={{borderRadius:50}} icon={<Icon name="share-2" size={21} style={styles.reactionIcons} />}/>

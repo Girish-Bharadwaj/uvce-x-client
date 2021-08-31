@@ -41,7 +41,7 @@ const App = () => {
           <Stack.Navigator> 
             {token?.profile?.sub ?
             <>
-              <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
+              <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown:false}}/>
               <Stack.Screen name="EventFullScreen" component={EventFullScreen} options={{headerShown:false}}/>
               <Stack.Screen name="CreateForm" component={CreateForm} options={{headerShown:false}}/>
               <Stack.Screen name="CreateClub" component={CreateClubForm} options={{headerShown:false}}/>

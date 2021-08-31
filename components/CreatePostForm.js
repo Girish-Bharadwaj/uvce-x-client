@@ -1,19 +1,40 @@
-import React from 'react'
-import { StyleSheet,View,TextInput } from 'react-native'
-import ImagePickerComponent from './ImagePickerComponent'
-import { Button } from 'react-native-elements'
-import { StyledContainer } from './styles'
+import React, {useState} from 'react';
+import { StyleSheet,View,TextInput } from 'react-native';
+import ImagePickerComponent from './ImagePickerComponent';
+import { Button } from 'react-native-elements';
+import { StyledContainer } from './styles';
+import { useDispatch } from 'react-redux';
+import { createPost } from '../actions/create';
+
+const CreatePostForm = ({navigation}) => {
+
+    const dispatch = useDispatch();
+
+    const [postData, setPostData] = useState({postText : '', postImage : ''});
+    const [image, setImage] = useState('');
+
+    const handleSubmit = () => {
+        setPostData({...postData, postImage : image});
+        dispatch(createPost(postData));
+        navigation.navigate("HomeScreen");
+    }
 
 
-const CreatePostForm = () => {
     return (
         <>
         <StyledContainer>
             <View style={styles.form}>
-                <TextInput underlineColorAndroid='transparent' placeholder="Description...." placeholderTextColor="#C4C4C4" multiline={true} style={styles.input}/>
+                <TextInput underlineColorAndroid='transparent' placeholder="Content...." 
+                placeholderTextColor="#C4C4C4"
+                 multiline={true} style={styles.input} maxLength={240}
+                 onChange={(e)=>setPostData({...postData, postText : e.target.value })}
+                 value={postData.postText}
+                required={true}/>
                 <View style={{flexDirection:'row',alignItems:'center',}}>
-                    <ImagePickerComponent/>
-                    <Button title="Submit" buttonStyle={styles.submit} />
+                    <ImagePickerComponent image={image} setImage={setImage} />
+
+                    <Button title="Submit" buttonStyle={styles.submit}
+                    onPress={handleSubmit} />
                 </View>
             </View>
         </StyledContainer>

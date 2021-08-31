@@ -14,13 +14,21 @@ const HomePage = () => {
         dispatch(getHomeFeed(page));
     }, [])
 
-    // const {homePosts} = useSelector(state => state.feed);
+    const {homePosts} = useSelector(state => state.feeds);
 
     return (
         <ScrollView>
-            {/* {homePosts?.map((post) => (
+            {homePosts !== undefined && <>
+            {homePosts?.length ?
+            <>
+             {homePosts?.map((post) => (
                     <PostComponent key = {post._id} post = {post}/>
-                ))}   */}
+                ))} 
+            </>
+             : <></>}</>
+            }
+            
+            
         </ScrollView>
     )
 }

@@ -6,7 +6,6 @@ const authReducer = (state = { idToken: null,isLoading:false, trigger : 1 }, act
         return { ...state, idToken: null,trigger:3};
         
       case 'START_LOADING':
-        console.log('started')
         return { ...state, isLoading:true};
       
       case 'END_LOADING':
