@@ -12,7 +12,7 @@ Used  [Architecture components](https://developer.android.com/topic/libraries/ar
 
 ## Screen shots
 
-![Image](/assets/login.jpg) ![Image](/assets/home.jpg) ![Image](/assets/trending.jpg) ![Image](/assets/details.jpg)
-![Image](/assets/profile.jpg)
+![Image](/assets/login.jpg =x250) ![Image](/assets/home.jpg =x250) ![Image](/assets/trending.jpg =x250) ![Image](/assets/details.jpg =x250)
+![Image](/assets/profile.jpg =x250)
 
 
