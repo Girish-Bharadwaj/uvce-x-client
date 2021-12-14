@@ -7,13 +7,14 @@ the same.
 The authentication is based on Google Authentication.
 The app is still under development.
 This repository has the front end part of the app.
-Used  [Architecture components](https://developer.android.com/topic/libraries/architecture/)  to make app robust and maintainable.
 
 
 ## Screen shots
 
 <img src="/assets/login.jpg" width="200"> <img src="/assets/home.jpg" width="200">
+
 <img src="/assets/trending.jpg" width="200"> <img src="/assets/details.jpg" width="200">
+
 <img src="/assets/profile.jpg" width="200">
 
 
